@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Week4Day1Demo.DelegatesAndEvents
+namespace Week4Day1DemoV2.DelegatesAndEvents
 {
     // Step 1: Declare a delegate
     internal delegate void NotifyDelegate(FileNotifyInfo fileNotifyInfo);

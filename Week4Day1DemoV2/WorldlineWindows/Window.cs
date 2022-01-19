@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Week4Day1Demo.WorldlineWindows
+namespace Week4Day1DemoV2.WorldlineWindows
 {
     /// <summary>
     /// 1. Inherit from Box
@@ -53,8 +49,8 @@ namespace Week4Day1Demo.WorldlineWindows
         {
             if (Contents == null) return;
 
-            int row = 1;
-            foreach (string item in Contents)
+            var row = 1;
+            foreach (var item in Contents)
             {
                 if (row >= Height - 1)
                     break;
@@ -62,6 +58,26 @@ namespace Week4Day1Demo.WorldlineWindows
                 Console.SetCursorPosition(Left + 1, Top + row);
                 Console.Write(item);
                 row++;
+            }
+        }
+
+        public override void Hide()
+        {
+            base.Hide();
+
+            HideContents();
+        }
+
+        private void HideContents()
+        {
+            if (Contents == null) return;
+
+            var blankLine = new string(' ', Width - 2);
+
+            for (var row = Top + 1; row < Top + Height - 1; row++)
+            {
+                Console.SetCursorPosition(Left + 1, row);
+                Console.Write(blankLine);
             }
         }
     }

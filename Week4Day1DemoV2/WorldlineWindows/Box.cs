@@ -1,13 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Week4Day1Demo.WorldlineWindows
+namespace Week4Day1DemoV2.WorldlineWindows
 {
+    public struct PositionChangedInfo
+    {
+        public int Left { get; set; }
+        public int Top { get; set; }
+
+        public PositionChangedInfo(int left, int top)
+        {
+            Left = left;
+            Top = top;
+        }
+    }
+
+    //Step1
+    //public delegate void PositionChangedDelegate(PositionChangedInfo positionChangedInfo);
+
     public class Box
     {
+        //Step2
+        //public event PositionChangedDelegate PositionChanged;
+        public event EventHandler<PositionChangedInfo> PositionChanged;
+
         public const char WindowBorderHorizontal = '-';
         public const char WindowBorderVertical = '|';
         public const char ClearCharacter = ' ';
@@ -49,6 +64,11 @@ namespace Week4Day1Demo.WorldlineWindows
             Hide();
             Left--;
             Show();
+
+            //Step3
+            if (PositionChanged != null)
+                //PositionChanged.Invoke(new PositionChangedInfo(Left, Top));
+                PositionChanged.Invoke(this, new PositionChangedInfo(Left, Top));
         }
 
         public void MoveRight()
@@ -56,6 +76,10 @@ namespace Week4Day1Demo.WorldlineWindows
             Hide();
             Left++;
             Show();
+
+            //Step3
+            if (PositionChanged != null)
+                PositionChanged.Invoke(this, new PositionChangedInfo(Left, Top));
         }
 
         public void MoveUp()
@@ -63,6 +87,10 @@ namespace Week4Day1Demo.WorldlineWindows
             Hide();
             Top--;
             Show();
+
+            //Step3
+            if (PositionChanged != null)
+                PositionChanged.Invoke(this, new PositionChangedInfo(Left, Top));
         }
 
         public void MoveDown()
@@ -70,6 +98,10 @@ namespace Week4Day1Demo.WorldlineWindows
             Hide();
             Top++;
             Show();
+
+            //Step3
+            if (PositionChanged != null)
+                PositionChanged.Invoke(this, new PositionChangedInfo(Left, Top));
         }
 
         protected virtual void DisplayBottom(char horizontalCharacter)
@@ -82,7 +114,7 @@ namespace Week4Day1Demo.WorldlineWindows
 
         protected virtual void DisplayRight(char verticalCharacter)
         {
-            for (int i = 1; i < Height - 1; i++)
+            for (var i = 1; i < Height - 1; i++)
             {
                 Console.SetCursorPosition(Right, Top + i);
                 Console.Write(verticalCharacter);
@@ -91,7 +123,7 @@ namespace Week4Day1Demo.WorldlineWindows
 
         protected virtual void DisplayLeft(char verticalCharacter)
         {
-            for (int i = 1; i < Height - 1; i++)
+            for (var i = 1; i < Height - 1; i++)
             {
                 Console.SetCursorPosition(Left, Top + i);
                 Console.Write(verticalCharacter);

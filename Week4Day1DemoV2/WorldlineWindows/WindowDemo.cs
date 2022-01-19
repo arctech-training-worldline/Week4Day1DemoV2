@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Week4Day1Demo.WorldlineWindows
+namespace Week4Day1DemoV2.WorldlineWindows
 {
     internal class WindowDemo
     {
@@ -13,6 +9,8 @@ namespace Week4Day1Demo.WorldlineWindows
             string[] contents1 = { "Dummy Text to display", "in my window.", "Just to see how", "It works" };
 
             Window window1 = new Window(10, 5, 30, 7, "My 1st Window");
+            window1.PositionChanged += Window1_PositionChanged;
+
             Window window2 = new Window(20, 13, 50, 5, "My 2nd Window", contents1);
 
             window1.Show();
@@ -54,6 +52,12 @@ namespace Week4Day1Demo.WorldlineWindows
                 }
 
             } while (keyInfo.Key != ConsoleKey.Escape);
+        }
+
+        private static void Window1_PositionChanged(object sender, PositionChangedInfo positionChangedInfo)
+        {
+            Console.SetCursorPosition(0, 0);
+            Console.Write($"Window 1 has moved to Left:{positionChangedInfo.Left}, Top:{positionChangedInfo.Top}");
         }
     }
 }

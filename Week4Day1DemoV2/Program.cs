@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Week4Day1Demo.DelegatesAndEvents;
-using Week4Day1Demo.WorldlineWindows;
+﻿using Week4Day1DemoV2.WorldlineWindows;
 
-namespace Week4Day1Demo
+namespace Week4Day1DemoV2
 {
     /// <summary>
     /// Problem Statement: Create a windowing system in a console application
@@ -32,11 +26,11 @@ namespace Week4Day1Demo
         static void Main(string[] args)
         {
             WindowDemo.Demo();
-            ParametersDemo.Demo();
-            DelegateDemo.Demo2();
-            EventDemo.Demo();
-            EventDemoFinal.Demo();
-            EventDemoFinalFinal.Demo();
+            //ParametersDemo.Demo();
+            //DelegateDemo.Demo2();
+            //EventDemo.Demo();
+            //EventDemoFinal.Demo();
+            //EventDemoFinalFinal.Demo();
         }
     }
 }
